@@ -93,7 +93,7 @@
 					<div class="grid-content bg-purple">
 						<el-button-group style="float: right;margin-right:16px;">
 							<el-button type="info" icon="el-icon-time" plain @click="changePage('History')" ref="history"></el-button>
-							<el-button type="info" icon="el-icon-document" plain></el-button>
+							<el-button type="info" icon="el-icon-document" plain  @click="changePage('Message')"></el-button>
 							<el-button type="info" icon="el-icon-refresh" plain @click="changePage('DetailInfo')"></el-button>
 						</el-button-group>
 					</div>
@@ -106,13 +106,15 @@
 	</div>
 </template>
 <script>
-import DetailInfo from '@/components/common/DetailInfo'
-import History from '@/components/common/History'
+import DetailInfo from '@/components/datacenter/DetailInfo'
+import History from '@/components/datacenter/History'
+import Message from '@/components/datacenter/Message'
 export default {
 	name: 'AutoMain',
 	components: {
 		DetailInfo,
 		History,
+		Message,
 	},
 	created: function() {
 
@@ -215,7 +217,6 @@ export default {
 		},
 		//单个执行，传递执行信息，交给后台处理
 		runSys(info) {
-			console.log(info);
 			//中转bus传值，其它组件可使用变量singlerun
 			this.$root.bus.$emit('singlerun', info.as_no);
 
@@ -243,16 +244,14 @@ export default {
 				} else {
 
 					this.currentView = pageName;
-
-					// console.log(this.multipleSelection[0].no);
 				}
 
 			} else {
-				if (this.currentView === "History") {
-					this.currentView = pageName;
-				} else {
+				if (this.currentView === "DetailInfo") {
 					this.$refs.currentView.getSysDetailInfo(this.multipleSelection);
-				}
+				} 
+					this.currentView = pageName;
+				
 
 			}
 

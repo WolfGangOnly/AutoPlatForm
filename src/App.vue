@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import LeftNav from '@/components/datacenter/LeftNav'
+import LeftNav from '@/components/common/LeftNav'
 export default {
   name: 'App',
   components: {

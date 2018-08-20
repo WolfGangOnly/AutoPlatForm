@@ -1,5 +1,5 @@
 <template>
-  <div class="detailinfo">
+  <div class="detailinfolink">
     <el-row type="flex" class="row-titleinfo" justify="center">
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
@@ -189,7 +189,7 @@
 </template>
 <script>
 export default {
-  name: 'DetailInfo',
+  name: 'DetailInfoLink',
   mounted: function() {
     
     this.clearSysInfo();
