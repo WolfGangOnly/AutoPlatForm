@@ -3,127 +3,189 @@
     <el-row type="flex" class="row-titleinfo" justify="center">
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          xxx数据的报文模板
-          <el-button style="" size="small" @click="changeTextType">boom</el-button>
+          {{title}}
+          <el-button style="" size="small" @click="changeTextType">change</el-button>
         </div>
-
       </el-col>
     </el-row>
-    <div class="left" style="width: 628px;height: 390px;float: left;overflow:auto;">
-      <div class="messageShow" style="margin: 10px;">
-        <el-input v-if="xmlTextVisible" type="textarea" :autosize="{ minRows: 17, maxRows: 17}" v-model="textarea3" resize="none"></el-input>
-        <div v-else draggable="true" :key="tag" class="el-tag" @dragstart="drag($event)" v-for="tag in dynamicTags" :disable-transitions="false" style=" margin-left: 10px;margin-top: 10px; cursor:pointer;">
-          {{tag}}     
+    <div class="footer">
+      <div class="left">
+        <div class="messageShow" style="margin: 10px;">
+          <el-input :disabled="modify" v-if="xmlTextVisible" class="xmltextarea" type="textarea" v-model="textarea" resize="none"></el-input>
+          <div v-else draggable="true" :key="tag" class="el-tag" @dragstart="drag($event)" v-for="tag in dynamicTags" :disable-transitions="false" style=" margin-left: 10px;margin-top: 10px; cursor:pointer;">
+            {{tag}}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="right" style="width: 960px;height: 380px; float: right; overflow:auto;">
-      <div class="messageShow" style="margin: 15px;">
-        <el-collapse v-model="activeName" accordion :model="formInline" @change="handleChange">
-          <el-collapse-item v-for="(dataMsg, index) in formInline" :key="dataMsg.key" :prop="index" :name="index">
-            <template slot="title">
-              <el-input size="small" style="width:120px" @blur="handleInputConfirm(dataMsg)" placeholder="请输入标题" v-if="dataMsg.inputVisible" v-model="dataMsg.title" ref="inputTitle">
-              </el-input>
-              <el-tag v-else :key="dataMsg.title" :disable-transitions="true" closable @close="handleClose(dataMsg,1)">{{dataMsg.title}}</el-tag>
-            </template>
-            <el-form :inline="true" class="demo-form-inline">
-              <div  @drop="drop($event)" @dragover="allowDrop($event)">
-                 <el-form-item v-for="(domain, index) in dataMsg.domains" :key="domain.key" :prop="'domains.' + index + '.value'" style="margin-bottom: 0px">
-                <el-tag :key="domain.label" closable :disable-transitions="true" @close="handleClose(domain,2)">
-                  {{domain.label}}
-                </el-tag>
-                <el-input v-model="domain.desc" size="small" style="width: 100px" placeholder="备注"></el-input>
-                <el-input v-model="domain.value" size="small" style="width: 120px" placeholder="参数"></el-input>
-              </el-form-item>
-               <el-input class="input-new-tag" v-if="newinputVisible" v-model="newinputValue" ref="newTagInput" size="small" @blur="handleNewInputConfirm('newTagInput')" style="width:120px;margin-top: 5px;">
-              </el-input>
-              <el-button v-else style="margin-top: 5px;" class="button-new-tag" size="small" @click="showInput('newTagInput')">+ New Tag</el-button>
-              </div>
-             
-             
-            </el-form>
-          </el-collapse-item>
-        </el-collapse>
-        <el-input class="input-new-tag" v-if="newinputDataVisible" v-model="newinputDataValue" ref="newDataInput" size="small" @blur="handleNewInputConfirm('newDataInput')" style="width:120px;margin-top:5px">
-        </el-input>
-        <el-button v-else class="button-new-tag" size="small" @click="showInput('newDataInput')" style="margin-top:5px">+ New Data</el-button>
+      <div class="right">
+        <div class="messageShow" style="margin: 15px;">
+          <el-collapse v-model="activeName" accordion :model="formInline" @change="handleChange">
+            <el-collapse-item v-for="(dataMsg, index) in formInline" :key="dataMsg.key" :prop="index" :name="index">
+              <template slot="title">
+                <el-input size="small" style="width:120px" @blur="handleInputConfirm(dataMsg)" placeholder="请输入标题" v-if="dataMsg.inputVisible" v-model="dataMsg.title" ref="inputTitle">
+                </el-input>
+                <el-tag v-else :key="dataMsg.title" :disable-transitions="true" closable @close="handleClose(dataMsg,1)">{{dataMsg.title}}</el-tag>
+              </template>
+              <el-form :inline="true" class="demo-form-inline">
+                <div @drop="drop($event)" @dragover="allowDrop($event)">
+                  <el-form-item v-for="(domain, index) in dataMsg.domains" :key="domain.key" :prop="'domains.' + index + '.value'" style="margin-bottom: 0px">
+                    <el-tag :key="domain.label" closable :disable-transitions="true" @close="handleClose(domain,2)">
+                      {{domain.label}}
+                    </el-tag>
+                    <el-input :disabled="modify" v-model="domain.desc" size="small" style="width: 100px" placeholder="备注"></el-input>
+                    <el-input :disabled="modify" v-model="domain.value" size="small" style="width: 120px" placeholder="参数"></el-input>
+                  </el-form-item>
+                  <el-input :disabled="modify" class="input-new-tag" v-if="newinputVisible" v-model="newinputValue" ref="newTagInput" size="small" @blur="handleNewInputConfirm('newTagInput')" style="width:120px;margin-top: 5px;">
+                  </el-input>
+                  <el-button :disabled="modify" v-else style="margin-top: 5px;" class="button-new-tag" size="small" @click="showInput('newTagInput')">+ New Tag</el-button>
+                </div>
+              </el-form>
+            </el-collapse-item>
+          </el-collapse>
+          <el-input class="input-new-tag" v-if="newinputDataVisible" v-model="newinputDataValue" ref="newDataInput" size="small" @blur="handleNewInputConfirm('newDataInput')" style="width:120px;margin-top:5px">
+          </el-input>
+          <el-button v-else class="button-new-tag" size="small" @click="showInput('newDataInput')" style="margin-top:5px" disabled>+ New Data</el-button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-  let dom = null;
+let dom = null;
 export default {
   name: 'Message',
-  ready: function() {},
   mounted: function() {
 
-
+    // this.xmlParser();
 
   },
   props: {
-
+    multipleSelection: {
+      type: Array,
+      required: true,
+    }
   },
   data() {
     return {
-      dynamicTags: ['标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8','标签9','标签10','标签11','标签12','标签13','标签14','标签15','标签16','标签17','标签18','标签19',],
+      title:'',
+      modify:true,
+      dynamicTags: [],
       inputValue: '',
       newinputDataValue: '',
       newinputDataVisible: false,
       newinputValue: '',
       newinputVisible: false,
 
-      xmlTextVisible:true,
-      textarea3: '<?xml version="1.0" encoding="UTF-8"?><shiporder><orderperson>George Bush</orderperson><shipto><name>Johndams</name><address>Oxford Street</address><city>London</city><country>UK</country><name1>123456</name1><name2>12345678</name2></shipto><item><title>Empire Burlesque</title><note>Special Edition</note><quantity>1</quantity><price>10.90</price></item><item><title>Hide your heart</title><quantity>1</quantity><price>9.90</price></item></shiporder>',
+      xmlTextVisible: true,
+      textarea: '',
       activeName: '1',
 
-      formInline: [{
-        title: '数据1',
-        inputVisible: false,
-        domains: [{
-          label: '//node1//node2',
-          desc: '',
-          value: ''
-        }, {
-          label: '//node1//node2//',
-          desc: '',
-          value: ''
-        }, {
-          label: '//node1//node2//node3//node4//node5//node6',
-          desc: '',
-          value: ''
-        }, {
-          label: '参数4',
-          desc: '',
-          value: ''
-        }]
-      }, {
-        title: '数据2',
-        inputVisible: false,
-        domains: [{
-          label: '//node1//node2',
-          desc: '金额',
-          value: ''
-        }, {
-          label: '//node1//node2//',
-          desc: '',
-          value: ''
-        }, {
-          label: '//node1//node2//node3//node4//node5//node6',
-          desc: '',
-          value: ''
-        }, {
-          label: '参数4',
-          desc: '',
-          value: ''
-        }]
-      }],
+      formInline: [],
       //存放结构
-      formInlineTemp: [],
-      
+      formInlineTemp: [{
+        title: '',
+        inputVisible: false,
+        domains: []
+      }, ],
+      //新增需要保存的数据
+      formInlineSave: [],
+
     }
   },
   methods: {
+    changeModifyStatus(val) {
+      this.modify = val;
+    },
+    //解析xml
+    xmlParser() {
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(this.textarea, "text/xml");
+
+      var field = xmlDoc.getElementsByTagName('field');
+      var tags = [];
+
+      for (var i = 0; i < field.length; i++) {
+        let newData = {
+          label: '',
+          desc: '',
+          value: ''
+        };
+        newData.label = field[i].getAttribute("name");
+        tags.push(newData);
+
+      };
+      return tags;
+    },
+    //获取数据信息
+    getData(val) {
+      this.title = val[0].as_name;
+      this.$ajax({
+          method: 'get',
+          url: 'http://localhost:6062/autotest/getData',
+          dataType: "json",
+          params: {
+            as_no: val[0].as_no,
+          },
+        })
+        .then((response) => {
+          let status = response.data.resCode;
+          let msg = response.data.resMsg;
+
+          if ('success' === status) {
+            let jsonData = JSON.parse(response.data.resResult);
+            let message = jsonData.message;
+            let data = JSON.parse(jsonData.data);
+            this.formInline = data;
+            this.textarea = message;
+            for (var i = 0; i < data.length; i++) {
+
+              if (data[i].domains.length === 0) {
+                data[i].domains = this.xmlParser();
+
+              } else {}
+            }
+
+
+          } else {
+
+          }
+        })
+        .catch((error) => {
+          this.$message.error('Hi，' + error);
+        });
+    },
+    //保存数据
+    saveData(val) {
+
+      let data = {
+        as_no: val[0].as_no,
+        as_messageid: val[0].as_messageid,
+        message: this.textarea,
+        data: this.formInline,
+      };
+      this.$ajax({
+          method: 'post',
+          url: 'http://localhost:6062/autotest/insertData',
+          dataType: "json",
+          data: data,
+        })
+        .then((response) => {
+          let status = response.data.resCode;
+          let msg = response.data.resMsg;
+          if ('success' === status) {
+            
+            this.$parent.clickDataRow(val[0]);
+           
+
+          } else {
+            this.$message.error('Hi，保存失败！');
+          }
+        })
+        .catch((error) => {
+          this.$message.error('Hi，' + error);
+        });
+    },
+
     //切换xml形态
     changeTextType() {
       if (this.xmlTextVisible) {
@@ -132,6 +194,7 @@ export default {
         this.xmlTextVisible = true;
       }
     },
+    //拖拽效果
     drag: function(event) {
       this.newinputValue = event.target.innerText;
       dom = event.currentTarget
@@ -141,12 +204,13 @@ export default {
 
       //event.target.appendChild(dom);
       this.handleNewInputConfirm("newTagInput");
-      
+
     },
     allowDrop: function(event) {
       event.preventDefault();
 
     },
+    //关闭标签
     handleClose(val, index) {
       if (index === 1) {
         this.formInline.splice(this.formInline.indexOf(val), 1);
@@ -155,6 +219,7 @@ export default {
       }
 
     },
+    //标签可输入
     handleChange(val) {
       if (val !== '') {
 
@@ -224,22 +289,20 @@ export default {
 }
 
 </script>
-<style>
-.row-titleinfo {
-  padding: 10px 0;
-  /*background-color: #f9fafc;*/
-  height: 80px;
-  width: 99%;
-  margin: auto;
+<style scoped>
+@import "../../../static/css/message.css"
+
+</style>
+<style type="text/css">
+.el-textarea__inner {
+  height: 222px;
 }
 
-.bg-purple-dark {
-  background: #ECF5FF;
-}
+@media screen and (max-width: 1366px) {
 
-.grid-content {
-  border-radius: 6px;
-  min-height: 100%;
+  .el-textarea__inner {
+    height: 175px;
+  }
 }
 
 </style>

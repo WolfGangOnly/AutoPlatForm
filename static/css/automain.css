@@ -1,0 +1,131 @@
+.AutoMain {
+	height: 100%;
+	width: 100%;
+}
+
+/*上下两块布局*/
+.mainheader {
+	float: left;
+	width: 100%;
+	/*background-color: #B7B7B7;*/
+	overflow: auto;
+	/*border-bottom: solid 1px #e6e6e6;*/
+}
+
+.mainfooter {
+	float: left;
+	width: 100%;
+	/*background-color: #B7B7B7;*/
+	overflow: auto;
+}
+
+/*头部行：按钮组，搜索框，刷新按钮;编辑，保存，取消*/
+.row-header {
+	padding: 0px 0;
+	background-color: #f9fafc;
+	height: 12%;
+}
+/*表格DIV*/
+.systable{
+	height: 88%;
+}
+
+
+
+.iconfont {
+	font-size: 1em;
+}
+.el-button-group {
+	margin-top: 1%;
+	margin-left: 1%;
+}
+
+/*button颜色处理*/
+.el-button--info.is-plain:focus,
+.el-button--info.is-plain:hover {
+  background: #409EFF;
+  border-color: #409EFF;
+  color: #fff
+}
+
+.el-button--info.is-plain:active {
+  background: #409EFF;
+  border-color: #409EFF;
+  color: #fff;
+  outline: 0;
+}
+
+
+
+.input-with-select {
+	/*background-color: #fff;*/
+	margin-top: 1%;
+	/*padding: 10px;*/
+}
+.el-select {
+	width: 130px;
+}
+
+.el-input {
+	width: 100%;
+}
+
+
+.el-row {
+	margin-bottom: 0px;
+	&:last-child {
+		margin-bottom: 0;
+	}
+	
+}
+
+
+.row-titleinfo {
+	padding: 10px 0;
+	/*background-color: #f9fafc;*/
+	min-height: 100px;
+	width: 99%;
+	margin: auto;
+}
+
+.el-col {
+	border-radius: 4px;
+}
+
+.bg-purple-dark {
+	background: #ECF5FF;
+}
+
+.grid-content {
+	
+	width: 100%;
+	height: 100%;
+}
+
+/*媒体查询*/
+@media screen and (max-width: 1600px) {
+	/*头部行：按钮组，搜索框，刷新按钮;编辑，保存，取消*/
+	.row-header {
+		padding: 0px 0;
+		background-color: #f9fafc;
+		height: 14%;
+	}
+	/*表格DIV*/
+	.systable{
+		height: 86%;
+	}
+	
+}
+@media screen and (max-width: 1366px) {
+	/*头部行：按钮组，搜索框，刷新按钮;编辑，保存，取消*/
+	.row-header {
+		padding: 0px 0;
+		background-color: #f9fafc;
+		height: 16%;
+	}
+	/*表格DIV*/
+	.systable{
+		height: 84%;
+	}
+	
+}

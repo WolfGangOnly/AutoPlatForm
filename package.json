@@ -13,6 +13,8 @@
     "ajv": "^6.5.2",
     "axios": "^0.18.0",
     "element-ui": "^2.4.1",
+    "postcss-px2rem": "^0.3.0",
+    "px2rem-loader": "^0.1.9",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

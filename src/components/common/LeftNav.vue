@@ -49,7 +49,7 @@
         执行任务
       </div>
       <div class="runinfomain">
-        <div class="progerss" style="padding: 5px;height: 30px">
+        <div class="progerss" style="padding: 5px;height: 10px">
           <li style="float: left;margin-top: 3px">{{progerssName}}</li>
           <el-progress :text-inside="true" :stroke-width="18" :percentage="precent" status="status" v-if="show" style="float: right;width: 66%;margin-top: 3px"></el-progress>
         </div>
@@ -64,8 +64,7 @@
 <script>
 export default {
   mounted: function() {
-    var orderHeight = document.documentElement.clientHeight;
-    document.getElementById("left-nav").style.height = orderHeight + 'px';
+   
     this.$root.bus.$on('singlerun', value => {
       this.addRunInfo(value);
     });
@@ -151,62 +150,8 @@ export default {
 }
 
 </script>
-<style>
-.left-nav {
-  border-right: solid 1px #e6e6e6;
-  /*color: #000;*/
-  /*font-size: 10px;*/
-  background-color: #f9fafc;
-  float: left;
-  width: 99.6%;
-  height: 100%;
-}
+<style scoped>
 
-.iconfont {
-  font-size: 24px;
-}
-
-.userinfo {
-  width: 100%;
-  height: 18%;
-  text-align: center;
-  margin-top: 20%;
-  margin-bottom: 16%;
-}
-
-.userinfo img {
-  height: 80px;
-  width: 80px;
-}
-
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 100%;
-  min-height: 40%;
-  background-color: #f9fafc;
-}
-
-.runinfo {
-  width: 92%;
-  height: 266px;
-  background-color: #f9fafc;
-  margin: auto;
-  border: solid 2px #e6e6e6;
-}
-
-.runinfotitle {
-  min-height: 18%;
-  background-color: #e6e6e6;
-}
-
-.runinfomain {
-  width: 100%;
-  min-height: 75%;
-}
-
-
-
-
-
-/*.hr1{ height:1px;border:none;border-top:2px solid #CCCCCC;}  */
+@import "../../../static/css/leftnav.css"
 
 </style>

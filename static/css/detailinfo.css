@@ -1,0 +1,81 @@
+/*详细页切换*/
+  .detailinfo {
+      width: 100%;
+      height: 88%;
+      float: left;
+      /*background-color: #B7B7B7;*/
+      overflow: auto;
+  }
+
+/*标题所在行*/
+
+.row-firsttitleinfo {
+  height: 26%;
+}
+
+.row-titleinfo {
+  height: 20%;
+}
+
+.bg-purple-dark {
+  background: #ECF5FF;
+}
+
+.grid-content {
+  border-radius: 12px;
+  min-height: 80%;
+  width: 99%;
+  margin-left: 0.5%;
+}
+
+.row-baseinfo {
+  padding: 5px 0;
+  /*background-color: #f9fafc;*/
+  min-height: 28%;
+  width: 100%;
+  margin: auto;
+}
+
+.el-select {
+  width: 120px;
+  float: left;
+  margin-right: 5px;
+}
+
+.sqlarea {
+  width: 66%;
+  
+}
+.el-cascader{
+  float: left;
+  margin-right: 5px;
+}
+/*媒体查询*/
+@media screen and (max-width: 1600px) {
+  /*详细页切换*/
+  .detailinfo {
+      width: 100%;
+      height: 86%;
+      float: left;
+      /*background-color: #B7B7B7;*/
+      overflow: auto;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  /*详细页切换*/
+  .detailinfo {
+      width: 100%;
+      height: 84%;
+      float: left;
+      /*background-color: #B7B7B7;*/
+      overflow: auto;
+  }
+  /*标题所在行*/
+  .row-firsttitleinfo {
+    height: 32%;
+  }
+  .row-titleinfo {
+    height: 25%;
+  }
+}

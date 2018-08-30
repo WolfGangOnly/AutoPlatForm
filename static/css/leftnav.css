@@ -1,0 +1,104 @@
+.left-nav {
+  border-right: solid 1px #e6e6e6;
+  /*color: #000;*/
+  /*font-size: 10px;*/
+  background-color: #f9fafc;
+  float: left;
+  width: 99.6%;
+  height: 100%;
+}
+
+.userinfo img {
+  height: 80px;
+  width: 80px;
+}
+
+.iconfont {
+  font-size: 24px;
+}
+
+.userinfo {
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  margin-top: 18%;
+  margin-bottom: 3%;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 100%;
+  min-height: 42%;
+  background-color: #f9fafc;
+}
+
+.runinfo {
+  width: 260px;
+  height: 222px;
+  background-color: #f9fafc;
+  margin: auto;
+  border: solid 2px #e6e6e6;
+}
+
+.runinfotitle {
+  min-height: 50px;
+  background-color: #e6e6e6;
+}
+
+.runinfomain {
+  width: 260px;
+  min-height: 166px;
+}
+@media screen and (max-width: 1600px) {
+
+  .userinfo img {
+  height: 72px;
+  width: 72px;
+  }
+
+  .runinfo {
+    width: 266px;
+    height: 222px;
+    background-color: #f9fafc;
+    margin: auto;
+    border: solid 2px #e6e6e6;
+  }
+
+  .runinfotitle {
+    min-height: 50px;
+    background-color: #e6e6e6;
+  }
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 100%;
+    min-height: 32%;
+    background-color: #f9fafc;
+  }
+  .runinfomain {
+    width: 266px;
+    min-height: 166px;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+    .userinfo img {
+  height: 66px;
+  width: 66px;
+  }
+
+  .runinfo {
+    width: 266px;
+    height: 140px;
+    background-color: #f9fafc;
+    margin: auto;
+    border: solid 2px #e6e6e6;
+  }
+
+  .runinfotitle {
+    min-height: 40px;
+    background-color: #e6e6e6;
+  }
+
+  .runinfomain {
+    width: 266px;
+    min-height: 120px;
+  }
+}

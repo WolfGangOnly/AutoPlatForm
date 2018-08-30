@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="320px">
+      <el-aside id="aside">
         <LeftNav></LeftNav>
       </el-aside>
       <el-container>
@@ -18,24 +18,16 @@ export default {
   name: 'App',
   components: {
     LeftNav
-  }
+  },
+  mounted: function() {
+   
+  },
+  methods: {
+   
+  },
 }
 
 </script>
-<style>
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: left;
-  color: #000000;
-  height: 100%;
-}
-
-.el-main {
-  padding: 0px;
-}
-
-
+<style scoped>
+@import "../static/css/app.css"
 </style>
